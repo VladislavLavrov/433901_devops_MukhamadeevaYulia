@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Калькулятор";
+}
+
+
+<h2>Калькулятор</h2>
+
+
+<form method="post" asp-controller="Calculator" asp-action="Calculate">
+
+
+    <input type="number"
+           name="num1"
+           placeholder="Первое число"
+           value="@ViewBag.Num1" />
+
+
+    <br><br>
+
+
+    <select name="operation">
+
+        <option value="Add"
+                selected="@(ViewBag.Operation?.ToString() == "Add")">
+            +
+        </option>
+
+        <option value="Subtract"
+                selected="@(ViewBag.Operation?.ToString() == "Subtract")">
+            -
+        </option>
+
+        <option value="Multiply"
+                selected="@(ViewBag.Operation?.ToString() == "Multiply")">
+            *
+        </option>
+
+        <option value="Divide"
+                selected="@(ViewBag.Operation?.ToString() == "Divide")">
+            /
+        </option>
+
+    </select>
+
+
+    <br><br>
+
+
+    <input type="number"
+           name="num2"
+           placeholder="Второе число"
+           value="@ViewBag.Num2" />
+
+
+    <br><br>
+
+
+    <button type="submit">
+        Посчитать
+    </button>
+
+
+</form>
+
+
+
+@if (ViewBag.Result != null)
+{
+    <h3>
+        Результат: @ViewBag.Result
+    </h3>
+}
