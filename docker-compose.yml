@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    container_name: web-mariadb-11
+    hostname: mariadb
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: 11-WebCalculatorDb
+      MARIADB_USER: webdb
+      MARIADB_PASSWORD: password
+    ports:
+      - "0.0.0.0:5041:3306"
+
+  web:
+    container_name: web-app-calculator-11
+    hostname: app
+    build: Calculator/Calculator/Calculator/
+    depends_on:
+      - mariadb
+    ports:
+      - "0.0.0.0:5011:5011"
