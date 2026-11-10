@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Calculator.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Calculator.Controllers
 {
@@ -12,6 +13,13 @@ namespace Calculator.Controllers
 
     public class CalculatorController : Controller
     {
+        private readonly CalculatorContext _context;
+
+        public CalculatorController(CalculatorContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -49,6 +57,18 @@ namespace Calculator.Controllers
             ViewBag.Num1 = num1;
             ViewBag.Num2 = num2;
             ViewBag.Result = result;
+
+            var dataInputVariant = new DataInputVariant
+            {
+                Operand_1 = num1.ToString(),
+                Operand_2 = num2.ToString(),
+                Type_operation = operation.ToString(),
+                Result = result.ToString()
+            };
+
+            _context.DataInputVariants.Add(dataInputVariant);
+            _context.SaveChanges();
+
             return View("Index");
         }
     }

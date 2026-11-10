@@ -1,0 +1,37 @@
+services:
+  mariadb:
+    image: mariadb:10.5
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: Calc11_Root_2026
+      MARIADB_DATABASE: 11-WebCalculatorDb
+      MARIADB_USER: webdb
+      MARIADB_PASSWORD: Calc11_Lab2_2026
+    ports:
+      - "5041:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - 'mysqladmin ping -h 127.0.0.1 -uroot -p"$${MARIADB_ROOT_PASSWORD}" --silent'
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+    ports:
+      - "5011:5011"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+volumes:
+  mariadb_data:
