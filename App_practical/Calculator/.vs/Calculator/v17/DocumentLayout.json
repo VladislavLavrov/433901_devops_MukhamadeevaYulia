@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\Migrations\\20261110011319_m_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Calculator\\Migrations\\20261110011319_m_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|solutionrelative:calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|solutionrelative:calculator\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|solutionrelative:calculator\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\migrations\\20261110011319_m_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|solutionrelative:calculator\\migrations\\20261110011319_m_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|solutionrelative:calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D8D8A50-9354-4C79-8511-C4F50FE9A513}|Calculator\\Calculator.csproj|c:\\devops_lavrov\\433901_devops_mukhamadeevayulia\\app_practical\\calculator\\calculator\\controllers\\calculatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "20261110011319_m_init.cs",
               "DocumentMoniker": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\Migrations\\20261110011319_m_init.cs",
               "RelativeDocumentMoniker": "Calculator\\Migrations\\20261110011319_m_init.cs",
@@ -75,13 +75,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\appsettings.Development.json",
               "RelativeDocumentMoniker": "Calculator\\appsettings.Development.json",
               "ToolTip": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\appsettings.Development.json",
               "RelativeToolTip": "Calculator\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-10T01:08:08.733Z",
               "EditorCaption": ""
@@ -96,8 +96,7 @@
               "RelativeToolTip": "Calculator\\Data\\CalculatorContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T01:05:46.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-10T01:05:46.104Z"
             },
             {
               "$type": "Document",
@@ -109,8 +108,7 @@
               "RelativeToolTip": "Calculator\\Data\\DataInputVariant.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T01:05:03.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-10T01:05:03.416Z"
             },
             {
               "$type": "Document",
@@ -122,8 +120,7 @@
               "RelativeToolTip": "Calculator\\.dockerignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-11-03T13:13:21.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T13:13:21.391Z"
             },
             {
               "$type": "Document",
@@ -146,25 +143,24 @@
               "RelativeToolTip": "Calculator\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-03T12:59:12.703Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:59:12.703Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\appsettings.json",
               "RelativeDocumentMoniker": "Calculator\\appsettings.json",
               "ToolTip": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\appsettings.json",
               "RelativeToolTip": "Calculator\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-03T12:58:06.94Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\DevOps_Lavrov\\433901_devops_MukhamadeevaYulia\\App_practical\\Calculator\\Calculator\\Program.cs",
               "RelativeDocumentMoniker": "Calculator\\Program.cs",
@@ -172,8 +168,7 @@
               "RelativeToolTip": "Calculator\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-03T12:57:55.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:57:55.518Z"
             },
             {
               "$type": "Document",
@@ -185,8 +180,7 @@
               "RelativeToolTip": "Calculator\\Views\\Calculator\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-03T12:57:17.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:57:17.747Z"
             },
             {
               "$type": "Document",
@@ -198,8 +192,7 @@
               "RelativeToolTip": "Calculator\\Controllers\\CalculatorController.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAcwEoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-03T12:55:10.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:55:10.864Z"
             },
             {
               "$type": "Document",
@@ -211,8 +204,7 @@
               "RelativeToolTip": "Calculator\\Calculator.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-11-03T12:53:46.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T12:53:46.833Z"
             }
           ]
         }
