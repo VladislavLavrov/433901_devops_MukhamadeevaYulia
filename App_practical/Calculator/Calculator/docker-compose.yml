@@ -40,3 +40,9 @@ services:
 
 volumes:
   mariadb_data:
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.211.11.0/24
