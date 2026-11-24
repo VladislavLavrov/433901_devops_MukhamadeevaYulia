@@ -33,7 +33,7 @@ services:
     entrypoint: ["sh", "-c"]
     command:
       - >-
-        exec mariadb -hmariadb -uroot -p"$MARIADB_ROOT_PASSWORD" -e
+        exec mariadb -hmariadb -uroot -p"$$MARIADB_ROOT_PASSWORD" -e
         "CREATE DATABASE IF NOT EXISTS myWebCalculatorDb CHARACTER SET utf8mb4;
         GRANT ALL PRIVILEGES ON myWebCalculatorDb.* TO 'webdb'@'%';
         FLUSH PRIVILEGES;"
