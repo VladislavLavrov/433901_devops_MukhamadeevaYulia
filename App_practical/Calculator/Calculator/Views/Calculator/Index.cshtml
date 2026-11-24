@@ -1,38 +1,45 @@
-﻿@{
+@{
     ViewData["Title"] = "Калькулятор";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="container py-4">
+    <h1 class="mb-4">Калькулятор</h1>
+    <form method="post" asp-controller="Calculator" asp-action="Calculate" class="row g-3 align-items-end">
+        @Html.AntiForgeryToken()
+        <div class="col-sm-4">
+            <label for="num1" class="form-label">Первое число</label>
+            <input id="num1" type="number" step="any" name="num1" value="@ViewBag.Num1" class="form-control" required />
+        </div>
+        <div class="col-sm-2">
+            <label for="operation" class="form-label">Операция</label>
+            <select id="operation" name="operation" class="form-select" required>
+                <option value="Add">Сложение (+)</option>
+                <option value="Subtract">Вычитание (−)</option>
+                <option value="Multiply">Умножение (×)</option>
+                <option value="Divide">Деление (÷)</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label for="num2" class="form-label">Второе число</label>
+            <input id="num2" type="number" step="any" name="num2" value="@ViewBag.Num2" class="form-control" required />
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary w-100">Вычислить</button>
+        </div>
+    </form>
 
-<form method="post"
-      asp-controller="Calculator"
-      asp-action="Calculate">
-
-    @Html.AntiForgeryToken()
-
-    <input type="text"
-           name="num1"
-           value="@ViewBag.Num1"
-           placeholder="Первое число"
-           required />
-
-    <select name="operation" required>
-        <option value="Add">+</option>
-        <option value="Subtract">-</option>
-        <option value="Multiply">*</option>
-        <option value="Divide">/</option>
-    </select>
-
-    <input type="text"
-           name="num2"
-           value="@ViewBag.Num2"
-           placeholder="Второе число"
-           required />
-
-    <input type="submit" value="Посчитать" />
-</form>
-
-@if (ViewBag.Result != null)
-{
-    <h3>Результат: @ViewBag.Result</h3>
-}
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-4">@ViewBag.Error</div>
+    }
+    @if (ViewBag.Result != null)
+    {
+        <div class="alert alert-success mt-4">
+            <strong>Результат: @ViewBag.Result</strong>
+            @if (ViewBag.KafkaStatus != null)
+            {
+                <div>@ViewBag.KafkaStatus</div>
+            }
+        </div>
+    }
+</div>

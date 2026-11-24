@@ -5,10 +5,10 @@ services:
     image: mariadb:10.5
     restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: Calc11_Root_2026
-      MARIADB_DATABASE: 11-WebCalculatorDb
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD in .env}
+      MARIADB_DATABASE: myWebCalculatorDb
       MARIADB_USER: webdb
-      MARIADB_PASSWORD: Calc11_Lab2_2026
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:?Set MARIADB_PASSWORD in .env}
     ports:
       - "5041:3306"
     volumes:
@@ -22,6 +22,21 @@ services:
       retries: 12
       start_period: 30s
 
+  db-prepare:
+    image: mariadb:10.5
+    restart: "no"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD in .env}
+    entrypoint: ["sh", "-c"]
+    command: >-
+      mariadb -hmariadb -uroot -p"$$MARIADB_ROOT_PASSWORD" -e
+      "CREATE DATABASE IF NOT EXISTS myWebCalculatorDb CHARACTER SET utf8mb4;
+      GRANT ALL PRIVILEGES ON myWebCalculatorDb.* TO 'webdb'@'%';
+      FLUSH PRIVILEGES;"
+
   web:
     container_name: calculator_11
     hostname: app
@@ -32,10 +47,55 @@ services:
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: "Server=mariadb;Port=3306;Database=myWebCalculatorDb;Uid=webdb;Pwd=${MARIADB_PASSWORD:?Set MARIADB_PASSWORD in .env};Character Set=utf8mb4;"
+      Kafka__BootstrapServers: kafka:9092
+      Kafka__Topic: calculator-results
+      Kafka__GroupId: calculator-consumer
     ports:
       - "5011:5011"
     depends_on:
-      mariadb:
+      db-prepare:
+        condition: service_completed_successfully
+      kafka:
+        condition: service_healthy
+
+  kafka:
+    image: confluentinc/cp-kafka:7.7.1
+    container_name: kafka-11
+    hostname: kafka
+    restart: unless-stopped
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server kafka:9092 --list >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 30s
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:v0.7.2
+    container_name: kafka-ui-11
+    restart: unless-stopped
+    ports:
+      - "10021:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: calculator
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    depends_on:
+      kafka:
         condition: service_healthy
 
 volumes:

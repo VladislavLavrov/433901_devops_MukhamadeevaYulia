@@ -1,4 +1,6 @@
-﻿using Calculator.Data;
+using System.Globalization;
+using Calculator.Data;
+using Calculator.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calculator.Controllers
@@ -14,60 +16,65 @@ namespace Calculator.Controllers
     public class CalculatorController : Controller
     {
         private readonly CalculatorContext _context;
+        private readonly KafkaProducerService _producer;
+        private readonly ILogger<CalculatorController> _logger;
 
-        public CalculatorController(CalculatorContext context)
+        public CalculatorController(CalculatorContext context, KafkaProducerService producer, ILogger<CalculatorController> logger)
         {
             _context = context;
+            _producer = producer;
+            _logger = logger;
         }
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Calculate(
-            double num1,
-            double num2,
-            Operation operation)
+        public async Task<IActionResult> Calculate(double num1, double num2, Operation operation, CancellationToken cancellationToken)
         {
-            double result = 0;
-
-            switch (operation)
+            if (operation == Operation.Divide && num2 == 0)
             {
-                case Operation.Add:
-                    result = num1 + num2;
-                    break;
-
-                case Operation.Subtract:
-                    result = num1 - num2;
-                    break;
-
-                case Operation.Multiply:
-                    result = num1 * num2;
-                    break;
-
-                case Operation.Divide:
-                    result = num1 / num2;
-                    break;
+                ViewBag.Error = "На ноль делить нельзя.";
+                ViewBag.Num1 = num1;
+                ViewBag.Num2 = num2;
+                return View("Index");
             }
+
+            var result = operation switch
+            {
+                Operation.Add => num1 + num2,
+                Operation.Subtract => num1 - num2,
+                Operation.Multiply => num1 * num2,
+                Operation.Divide => num1 / num2,
+                _ => throw new ArgumentOutOfRangeException(nameof(operation))
+            };
 
             ViewBag.Num1 = num1;
             ViewBag.Num2 = num2;
             ViewBag.Result = result;
 
-            var dataInputVariant = new DataInputVariant
+            var calculation = new DataInputVariant
             {
-                Operand_1 = num1.ToString(),
-                Operand_2 = num2.ToString(),
+                Operand_1 = num1.ToString(CultureInfo.InvariantCulture),
+                Operand_2 = num2.ToString(CultureInfo.InvariantCulture),
                 Type_operation = operation.ToString(),
-                Result = result.ToString()
+                Result = result.ToString(CultureInfo.InvariantCulture)
             };
 
-            _context.DataInputVariants.Add(dataInputVariant);
-            _context.SaveChanges();
+            _context.DataInputVariants.Add(calculation);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            try
+            {
+                await _producer.ProduceAsync(calculation, cancellationToken);
+                ViewBag.KafkaStatus = "Расчёт сохранён в MariaDB и отправлен в Kafka.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Не удалось отправить расчёт #{Id} в Kafka", calculation.ID_DataInputVariant);
+                ViewBag.KafkaStatus = "Расчёт сохранён в MariaDB, но Kafka временно недоступна.";
+            }
 
             return View("Index");
         }
