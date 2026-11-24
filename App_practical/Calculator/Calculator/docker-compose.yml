@@ -31,11 +31,12 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD in .env}
     entrypoint: ["sh", "-c"]
-    command: >-
-      mariadb -hmariadb -uroot -p"$$MARIADB_ROOT_PASSWORD" -e
-      "CREATE DATABASE IF NOT EXISTS myWebCalculatorDb CHARACTER SET utf8mb4;
-      GRANT ALL PRIVILEGES ON myWebCalculatorDb.* TO 'webdb'@'%';
-      FLUSH PRIVILEGES;"
+    command:
+      - >-
+        exec mariadb -hmariadb -uroot -p"$MARIADB_ROOT_PASSWORD" -e
+        "CREATE DATABASE IF NOT EXISTS myWebCalculatorDb CHARACTER SET utf8mb4;
+        GRANT ALL PRIVILEGES ON myWebCalculatorDb.* TO 'webdb'@'%';
+        FLUSH PRIVILEGES;"
 
   web:
     container_name: calculator_11
